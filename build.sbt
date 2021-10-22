@@ -64,6 +64,8 @@ testOptions += Tests.Argument(TestFrameworks.JUnit, "-a", "-v")
 checkstyleConfigLocation := CheckstyleConfigLocation.File("config/checkstyle/google_checks.xml")
 checkstyleSeverityLevel := Some(CheckstyleSeverityLevel.Info)
 
+Global / onChangedBuildSource := ReloadOnSourceChanges
+
 import ReleaseTransformations._
 releasePublishArtifactsAction := PgpKeys.publishSigned.value
 releaseVersionBump := sbtrelease.Version.Bump.Bugfix
@@ -73,6 +75,7 @@ releaseProcess := Seq[ReleaseStep](
   runTest,
   inquireVersions,
   setReleaseVersion,
+  releaseStepCommand("publishLocal"),
   setNextVersion,
   commitNextVersion,
   pushChanges,

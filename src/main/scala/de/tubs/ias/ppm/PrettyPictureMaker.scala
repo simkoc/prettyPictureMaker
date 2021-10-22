@@ -1,7 +1,7 @@
 package de.tubs.ias.ppm
 
 import de.halcony.argparse.{Parser, ParsingException, ParsingResult}
-import de.tubs.ias.ppm.bargraph.{Axis, BarGraph, BarOrientation, Plot, Sorting, Unlabeled}
+import de.tubs.ias.ppm.bargraph.{Axis, BarGraph, BarOrientation, Coordinate, Plot, Sorting}
 import de.tubs.ias.ppm.tikzGeneral.{Red, TikzSVG, Yellow}
 import wvlet.log.LogSupport
 
@@ -37,9 +37,9 @@ object PrettyPictureMaker extends LogSupport {
     val (outPath, outFile) = splitOut(pargv.get[String]("out"))
     val graph = new BarGraph(
       s"$outFile.svg",
-      Axis(BarOrientation.horizontal, 0.05, 12, 0, 4),
+      Axis(BarOrientation.horizontal, 0.05, 12, Some(0), Some(4)),
       List(Plot(Red, 0.4, Yellow, List(
-        Unlabeled(1, 0), Unlabeled(2, 1), Unlabeled(3, 2), Unlabeled(0, 3)))))
+        Coordinate("1", "0"), Coordinate("2", "1"), Coordinate("3", "2"), Coordinate("0", "3")))))
     val texFile = s"$outPath/$outFile.tex"
     info(s"writing tex into $texFile")
     graph.createPictureTex(texFile)

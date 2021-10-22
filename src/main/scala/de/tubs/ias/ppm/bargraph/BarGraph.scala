@@ -56,8 +56,13 @@ object BarGraph extends LogSupport {
         csvSource.close()
       }
     }
-    val max : Int = plots.map(_.coordinates.map(_.getValue).max).max
-    val axis = Axis(orientation,0.05,12,offset,max)
+    val max : Option[Int] = orientation match {
+      case de.tubs.ias.ppm.bargraph.BarOrientation.horizontal => Coordinate.getMaxY(plots.flatMap(_.coordinates))
+      case de.tubs.ias.ppm.bargraph.BarOrientation.vertical =>Coordinate.getMaxY(plots.flatMap(_.coordinates))
+    }
+
+      //plots.map(_.coordinates.map(_.getValue).max).max
+    val axis = Axis(orientation,0.05,12,Some(offset),max)
     new BarGraph(out,axis,plots)
   }
 
