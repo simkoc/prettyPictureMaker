@@ -1,7 +1,7 @@
 package de.tubs.ias.ppm.tikzGeneral
 
 trait Color {
-  def toString : String
+  def toString: String
 }
 
 object Red extends Color {
