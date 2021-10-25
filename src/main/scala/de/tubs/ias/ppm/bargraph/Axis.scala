@@ -33,11 +33,11 @@ case class Axis(axisOrientation: BarOrientation,
     }
   }
 
-  private def createLegend(plots : Seq[Plot]) : String = {
+  private def createLegend(plots: Seq[Plot]): String = {
     try {
-      plots.map(_.label.get).mkString("\\legend{",",","};\n")
+      plots.map(_.label.get).mkString("\\legend{", ",", "};\n")
     } catch {
-      case _ : Throwable => ""
+      case _: Throwable => ""
     }
   }
 

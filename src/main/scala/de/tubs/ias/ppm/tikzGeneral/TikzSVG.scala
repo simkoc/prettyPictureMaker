@@ -6,13 +6,17 @@ import java.io.{BufferedWriter, File, FileWriter}
 import scala.sys.process._
 import java.lang.{ProcessBuilder => jProcessBuilder}
 
-abstract class TikzSVG(outSvg: String, customColors : Option[List[CustomColor]] = None) {
+abstract class TikzSVG(outSvg: String,
+                       customColors: Option[List[CustomColor]] = None) {
 
   private def getBoilerplateHead: String = {
     s"""\\documentclass[tikz,convert={outfile=$outSvg.svg}]{standalone}
         |\\usepackage{pgfplots}
         |\\usetikzlibrary{patterns}
-        |${customColors.getOrElse(List()).map(_.getColorDefinition).mkString("\n")}
+        |${customColors
+         .getOrElse(List())
+         .map(_.getColorDefinition)
+         .mkString("\n")}
         |\\begin{document}
         |\\begin{tikzpicture}
         |""".stripMargin

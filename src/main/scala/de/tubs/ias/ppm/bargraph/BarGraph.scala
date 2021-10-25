@@ -7,7 +7,10 @@ import wvlet.log.LogSupport
 
 import scala.io.Source
 
-class BarGraph(outSvg: String, axis: Axis, plots: Seq[Plot], customColors : Option[List[CustomColor]] = None)
+class BarGraph(outSvg: String,
+               axis: Axis,
+               plots: Seq[Plot],
+               customColors: Option[List[CustomColor]] = None)
     extends TikzSVG(outSvg, customColors) {
 
   override protected def createGraphTex(): String = {

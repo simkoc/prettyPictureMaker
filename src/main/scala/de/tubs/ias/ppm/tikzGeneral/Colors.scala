@@ -4,8 +4,9 @@ trait Color {
   def toString: String
 }
 
-case class CustomColor(name : String ,r : Double, g : Double, b : Double) extends Color {
-  def getColorDefinition : String = s"\\definecolor{$name}{rgb}{$r,$g,$b}"
+case class CustomColor(name: String, r: Double, g: Double, b: Double)
+    extends Color {
+  def getColorDefinition: String = s"\\definecolor{$name}{rgb}{$r,$g,$b}"
 
   override def toString: String = name
 }
