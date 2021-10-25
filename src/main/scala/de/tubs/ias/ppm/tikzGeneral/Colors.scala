@@ -11,6 +11,10 @@ case class CustomColor(name: String, r: Double, g: Double, b: Double)
   override def toString: String = name
 }
 
+object White extends Color {
+  override def toString: String = "white"
+}
+
 object Red extends Color {
   override def toString = "red"
 }
