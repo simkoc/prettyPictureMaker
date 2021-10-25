@@ -33,6 +33,14 @@ case class Axis(axisOrientation: BarOrientation,
     }
   }
 
+  private def createLegend(plots : Seq[Plot]) : String = {
+    try {
+      plots.map(_.label.get).mkString("\\legend{",",","};\n")
+    } catch {
+      case _ : Throwable => ""
+    }
+  }
+
   def createAxis(plots: Seq[Plot]): String = {
     val labelNumberic = try {
       plots.foreach(_.coordinates.foreach(elem => getLabel(elem).toDouble))
@@ -71,6 +79,7 @@ case class Axis(axisOrientation: BarOrientation,
         .mkString("\n")
     s"""$beginAxis
        |${plots.map(plot => plot.getPlotCommand).mkString("\n")}
+       |${createLegend(plots)}
        |\\end{axis}
        |""".stripMargin
   }

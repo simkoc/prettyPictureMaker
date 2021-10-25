@@ -5,7 +5,8 @@ import de.tubs.ias.ppm.tikzGeneral.Color
 case class Plot(lineColor: Color,
                 lineWidth: Double,
                 fillColor: Color,
-                coordinates: Seq[Coordinate]) {
+                coordinates: Seq[Coordinate],
+                label : Option[String] = None) {
 
   def getPlotCommand: String = {
     s"""\\addplot[
