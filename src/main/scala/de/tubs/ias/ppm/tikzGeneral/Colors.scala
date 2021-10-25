@@ -39,18 +39,6 @@ object Black extends Color {
   override def toString: String = "black"
 }
 
-object Grey extends Color {
-  override def toString: String = "grey"
-}
-
-object Darkgray extends Color {
-  override def toString: String = "darkgrey"
-}
-
-object Lightgray extends Color {
-  override def toString: String = "lightgrey"
-}
-
 object Brown extends Color {
   override def toString: String = "brown"
 }
