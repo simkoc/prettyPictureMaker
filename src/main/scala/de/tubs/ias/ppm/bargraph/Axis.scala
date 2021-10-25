@@ -50,7 +50,7 @@ case class Axis(axisOrientation: BarOrientation,
         info("detected non-numeric labels")
         false
     }
-    val labels = plots.flatMap(_.coordinates.map(getLabel))
+    val labels = plots.flatMap(_.coordinates.map(getLabel)).toSet
     val o = axisOrientation match {
       case BarOrientation.horizontal => "x"
       case BarOrientation.vertical   => "y"

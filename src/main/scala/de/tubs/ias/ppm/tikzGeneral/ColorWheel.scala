@@ -26,7 +26,7 @@ class ColorWheel(amount : Int = 18) {
     Pink -> false,
     Purple  -> false,
     Teal  -> false,
-    Violet -> false
+    Violet -> false,
   )
 
 
