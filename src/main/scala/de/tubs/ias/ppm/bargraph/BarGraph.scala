@@ -2,13 +2,13 @@ package de.tubs.ias.ppm.bargraph
 
 import de.tubs.ias.ppm.bargraph.BarOrientation.BarOrientation
 import de.tubs.ias.ppm.bargraph.Sorting.{ASC, DESC, SortingDirection}
-import de.tubs.ias.ppm.tikzGeneral.{Red, TikzSVG}
+import de.tubs.ias.ppm.tikzGeneral.{CustomColor, Red, TikzSVG}
 import wvlet.log.LogSupport
 
 import scala.io.Source
 
-class BarGraph(outSvg: String, axis: Axis, plots: Seq[Plot])
-    extends TikzSVG(outSvg) {
+class BarGraph(outSvg: String, axis: Axis, plots: Seq[Plot], customColors : Option[List[CustomColor]] = None)
+    extends TikzSVG(outSvg, customColors) {
 
   override protected def createGraphTex(): String = {
     axis.createAxis(plots)
