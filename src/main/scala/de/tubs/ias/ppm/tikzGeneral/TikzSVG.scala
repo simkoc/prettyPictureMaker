@@ -5,6 +5,8 @@ import wvlet.log.LogSupport
 import java.io.{BufferedWriter, File, FileWriter}
 import scala.sys.process._
 import java.lang.{ProcessBuilder => jProcessBuilder}
+import scala.concurrent.duration.{Duration, MILLISECONDS, MINUTES}
+import scala.concurrent.{Await, ExecutionContext, Future, TimeoutException}
 
 abstract class TikzSVG(outSvg: String,
                        customColors: Option[List[CustomColor]] = None) {
@@ -49,19 +51,28 @@ object TikzSVG extends LogSupport {
   private val PDFLATEX = "pdflatex"
   private val PDF2SVG = "pdf2svg"
 
-  final def compile(texFile: String): Unit = {
+  final def compile(texFile: String, timeout : Int = 10000): Boolean = {
     assert(texFile.endsWith(".tex"))
     val folder = texFile.split("/").reverse.tail.reverse.mkString("/")
     val baseFile = texFile.split("/").last
     val pdf = s"${baseFile.substring(0, baseFile.length - 4)}.pdf"
     val svg = s"${baseFile.substring(0, baseFile.length - 4)}.svg"
-    info(s"compiling tex file $baseFile")
-    new jProcessBuilder(PDFLATEX, baseFile)
-      .directory(new File(folder))
-      .!!
-    info(s"processing $pdf to $svg")
-    new jProcessBuilder(PDF2SVG, pdf, svg)
-      .directory(new File(folder))
-      .!!
+    val future = Future {
+      info(s"compiling tex file $baseFile")
+      new jProcessBuilder(PDFLATEX, baseFile)
+        .directory(new File(folder))
+        .!!
+      info(s"processing $pdf to $svg")
+      new jProcessBuilder(PDF2SVG, pdf, svg)
+        .directory(new File(folder))
+        .!!
+    }(ExecutionContext.global)
+    try {
+      Await.result(future, Duration(timeout, MILLISECONDS))
+      true
+    } catch {
+      case _ : TimeoutException => error(s"creation of $texFile timed out")
+        false
+    }
   }
 }

@@ -2,11 +2,11 @@ package de.tubs.ias.ppm.bargraph
 
 import de.tubs.ias.ppm.tikzGeneral.Color
 
-case class Plot(lineColor: Color,
-                lineWidth: Double,
-                fillColor: Color,
-                coordinates: Seq[Coordinate],
-                label: Option[String] = None) {
+case class BarPlot(lineColor: Color,
+                   lineWidth: Double,
+                   fillColor: Color,
+                   coordinates: Seq[Coordinate],
+                   label: Option[String] = None) {
 
   def getPlotCommand: String = {
     s"""\\addplot[

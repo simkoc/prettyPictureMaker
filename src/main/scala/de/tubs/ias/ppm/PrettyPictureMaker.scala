@@ -2,11 +2,11 @@ package de.tubs.ias.ppm
 
 import de.halcony.argparse.{Parser, ParsingException, ParsingResult}
 import de.tubs.ias.ppm.bargraph.{
-  Axis,
+  BarAxis,
   BarGraph,
   BarOrientation,
   Coordinate,
-  Plot,
+  BarPlot,
   Sorting
 }
 import de.tubs.ias.ppm.tikzGeneral.{Red, TikzSVG, Yellow}
@@ -52,9 +52,9 @@ object PrettyPictureMaker extends LogSupport {
     val (outPath, outFile) = splitOut(pargv.get[String]("out"))
     val graph = new BarGraph(
       s"$outFile.svg",
-      Axis(BarOrientation.horizontal, 0.05, 12, Some(0), Some(4)),
+      BarAxis(BarOrientation.horizontal, 0.05, 12, Some(0), Some(4)),
       List(
-        Plot(Red,
+        BarPlot(Red,
              0.4,
              Yellow,
              List(Coordinate("1", "0"),

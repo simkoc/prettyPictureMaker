@@ -15,15 +15,15 @@ import wvlet.log.LogSupport
   * @param ymin the minimum value on the plotted y axis
   * @param ymax the maximum value on the plotted y axis
   */
-case class Axis(axisOrientation: BarOrientation,
-                delta: Double,
-                barWidth: Int,
-                width: Option[Int] = None,
-                height: Option[Int] = None,
-                ymin: Option[Int] = None,
-                ymax: Option[Int] = None,
-                xmin: Option[Int] = None,
-                xmax: Option[Int] = None)
+case class BarAxis(axisOrientation: BarOrientation,
+                   delta: Double,
+                   barWidth: Int,
+                   width: Option[Int] = None,
+                   height: Option[Int] = None,
+                   ymin: Option[Int] = None,
+                   ymax: Option[Int] = None,
+                   xmin: Option[Int] = None,
+                   xmax: Option[Int] = None)
     extends LogSupport {
 
   def getLabel(coordinate: Coordinate): String = {
@@ -33,7 +33,7 @@ case class Axis(axisOrientation: BarOrientation,
     }
   }
 
-  private def createLegend(plots: Seq[Plot]): String = {
+  private def createLegend(plots: Seq[BarPlot]): String = {
     try {
       plots.map(_.label.get).mkString("\\legend{", ",", "};\n")
     } catch {
@@ -41,7 +41,7 @@ case class Axis(axisOrientation: BarOrientation,
     }
   }
 
-  def createAxis(plots: Seq[Plot]): String = {
+  def createAxis(plots: Seq[BarPlot]): String = {
     val labelNumberic = try {
       plots.foreach(_.coordinates.foreach(elem => getLabel(elem).toDouble))
       true

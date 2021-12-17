@@ -8,8 +8,8 @@ import wvlet.log.LogSupport
 import scala.io.Source
 
 class BarGraph(outSvg: String,
-               axis: Axis,
-               plots: Seq[Plot],
+               axis: BarAxis,
+               plots: Seq[BarPlot],
                customColors: Option[List[CustomColor]] = None)
     extends TikzSVG(outSvg, customColors) {
 
@@ -64,7 +64,7 @@ object BarGraph extends LogSupport {
             throw new RuntimeException(
               s"this must never happen - the fuck is sorting $value")
         }
-        Plot(Red, 0.04, Red, sorted)
+        BarPlot(Red, 0.04, Red, sorted)
       } finally {
         csvSource.close()
       }
@@ -77,7 +77,7 @@ object BarGraph extends LogSupport {
     }
 
     //plots.map(_.coordinates.map(_.getValue).max).max
-    val axis = Axis(orientation, 0.05, 12, Some(offset), max)
+    val axis = BarAxis(orientation, 0.05, 12, Some(offset), max)
     new BarGraph(out, axis, plots)
   }
 
