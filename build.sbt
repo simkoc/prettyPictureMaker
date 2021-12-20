@@ -67,7 +67,6 @@ checkstyleSeverityLevel := Some(CheckstyleSeverityLevel.Info)
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
 import ReleaseTransformations._
-releasePublishArtifactsAction := PgpKeys.publishSigned.value
 releaseVersionBump := sbtrelease.Version.Bump.Bugfix
 
 releaseProcess := Seq[ReleaseStep](
