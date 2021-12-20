@@ -1,6 +1,7 @@
 package de.tubs.ias.ppm.bargraph
 
-import de.tubs.ias.ppm.tikzGeneral.Color
+import de.tubs.ias.ppm.basics.Coordinate
+import de.tubs.ias.ppm.colors.Color
 
 case class BarPlot(lineColor: Color,
                    lineWidth: Double,

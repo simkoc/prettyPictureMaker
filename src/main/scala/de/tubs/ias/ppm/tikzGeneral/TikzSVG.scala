@@ -1,13 +1,15 @@
 package de.tubs.ias.ppm.tikzGeneral
 
+import de.tubs.ias.ppm.colors.CustomColor
 import wvlet.log.LogSupport
 
 import java.io.{BufferedWriter, File, FileWriter}
-import scala.sys.process._
 import java.lang.{ProcessBuilder => jProcessBuilder}
-import scala.concurrent.duration.{Duration, MILLISECONDS, MINUTES}
+import scala.concurrent.duration.{Duration, MILLISECONDS}
 import scala.concurrent.{Await, ExecutionContext, Future, TimeoutException}
+import scala.sys.process._
 
+@deprecated
 abstract class TikzSVG(outSvg: String,
                        customColors: Option[List[CustomColor]] = None) {
 
@@ -51,7 +53,7 @@ object TikzSVG extends LogSupport {
   private val PDFLATEX = "pdflatex"
   private val PDF2SVG = "pdf2svg"
 
-  final def compile(texFile: String, timeout : Int = 10000): Boolean = {
+  final def compile(texFile: String, timeout: Int = 10000): Boolean = {
     assert(texFile.endsWith(".tex"))
     val folder = texFile.split("/").reverse.tail.reverse.mkString("/")
     val baseFile = texFile.split("/").last
@@ -71,7 +73,8 @@ object TikzSVG extends LogSupport {
       Await.result(future, Duration(timeout, MILLISECONDS))
       true
     } catch {
-      case _ : TimeoutException => error(s"creation of $texFile timed out")
+      case _: TimeoutException =>
+        error(s"creation of $texFile timed out")
         false
     }
   }

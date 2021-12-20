@@ -1,6 +1,7 @@
 package de.tubs.ias.ppm.bargraph
 
 import BarOrientation._
+import de.tubs.ias.ppm.basics.Coordinate
 import wvlet.log.LogSupport
 
 /**
@@ -15,15 +16,15 @@ import wvlet.log.LogSupport
   * @param ymin the minimum value on the plotted y axis
   * @param ymax the maximum value on the plotted y axis
   */
-case class BarAxis(axisOrientation: BarOrientation,
-                   delta: Double,
-                   barWidth: Int,
-                   width: Option[Int] = None,
-                   height: Option[Int] = None,
-                   ymin: Option[Int] = None,
-                   ymax: Option[Int] = None,
-                   xmin: Option[Int] = None,
-                   xmax: Option[Int] = None)
+case class BarPlotAxis(axisOrientation: BarOrientation,
+                       delta: Double,
+                       barWidth: Int,
+                       width: Option[Int] = None,
+                       height: Option[Int] = None,
+                       ymin: Option[Int] = None,
+                       ymax: Option[Int] = None,
+                       xmin: Option[Int] = None,
+                       xmax: Option[Int] = None)
     extends LogSupport {
 
   def getLabel(coordinate: Coordinate): String = {

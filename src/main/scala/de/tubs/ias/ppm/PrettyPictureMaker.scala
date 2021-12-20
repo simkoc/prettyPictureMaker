@@ -2,14 +2,15 @@ package de.tubs.ias.ppm
 
 import de.halcony.argparse.{Parser, ParsingException, ParsingResult}
 import de.tubs.ias.ppm.bargraph.{
-  BarAxis,
+  BarPlotAxis,
   BarGraph,
   BarOrientation,
-  Coordinate,
   BarPlot,
   Sorting
 }
-import de.tubs.ias.ppm.tikzGeneral.{Red, TikzSVG, Yellow}
+import de.tubs.ias.ppm.basics.Coordinate
+import de.tubs.ias.ppm.colors.{Red, Yellow}
+import de.tubs.ias.ppm.tikzGeneral.TikzSVG
 import wvlet.log.LogSupport
 
 object PrettyPictureMaker extends LogSupport {
@@ -52,15 +53,15 @@ object PrettyPictureMaker extends LogSupport {
     val (outPath, outFile) = splitOut(pargv.get[String]("out"))
     val graph = new BarGraph(
       s"$outFile.svg",
-      BarAxis(BarOrientation.horizontal, 0.05, 12, Some(0), Some(4)),
+      BarPlotAxis(BarOrientation.horizontal, 0.05, 12, Some(0), Some(4)),
       List(
         BarPlot(Red,
-             0.4,
-             Yellow,
-             List(Coordinate("1", "0"),
-                  Coordinate("2", "1"),
-                  Coordinate("3", "2"),
-                  Coordinate("0", "3"))))
+                0.4,
+                Yellow,
+                List(Coordinate("1", "0"),
+                     Coordinate("2", "1"),
+                     Coordinate("3", "2"),
+                     Coordinate("0", "3"))))
     )
     val texFile = s"$outPath/$outFile.tex"
     info(s"writing tex into $texFile")

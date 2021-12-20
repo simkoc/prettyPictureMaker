@@ -2,13 +2,15 @@ package de.tubs.ias.ppm.bargraph
 
 import de.tubs.ias.ppm.bargraph.BarOrientation.BarOrientation
 import de.tubs.ias.ppm.bargraph.Sorting.{ASC, DESC, SortingDirection}
-import de.tubs.ias.ppm.tikzGeneral.{CustomColor, Red, TikzSVG}
+import de.tubs.ias.ppm.basics.Coordinate
+import de.tubs.ias.ppm.colors.{CustomColor, Red}
+import de.tubs.ias.ppm.tikzGeneral.TikzSVG
 import wvlet.log.LogSupport
 
 import scala.io.Source
 
 class BarGraph(outSvg: String,
-               axis: BarAxis,
+               axis: BarPlotAxis,
                plots: Seq[BarPlot],
                customColors: Option[List[CustomColor]] = None)
     extends TikzSVG(outSvg, customColors) {
@@ -77,7 +79,7 @@ object BarGraph extends LogSupport {
     }
 
     //plots.map(_.coordinates.map(_.getValue).max).max
-    val axis = BarAxis(orientation, 0.05, 12, Some(offset), max)
+    val axis = BarPlotAxis(orientation, 0.05, 12, Some(offset), max)
     new BarGraph(out, axis, plots)
   }
 

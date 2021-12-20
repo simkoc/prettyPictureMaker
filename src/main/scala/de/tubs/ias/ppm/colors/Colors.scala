@@ -1,4 +1,4 @@
-package de.tubs.ias.ppm.tikzGeneral
+package de.tubs.ias.ppm.colors
 
 trait Color {
   def toString: String
