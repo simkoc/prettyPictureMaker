@@ -1,4 +1,4 @@
-package de.halcony.ppm.basics
+package de.halcony.ppm.graph
 
 case class Coordinate(x: String, y: String) {
   override def toString: String = s"($x,$y)"

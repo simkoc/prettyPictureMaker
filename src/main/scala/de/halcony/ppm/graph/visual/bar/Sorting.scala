@@ -1,4 +1,4 @@
-package de.halcony.ppm.bargraph
+package de.halcony.ppm.graph.visual.bar
 
 object Sorting extends Enumeration {
   type SortingDirection = Value

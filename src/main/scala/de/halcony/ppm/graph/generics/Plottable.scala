@@ -1,4 +1,4 @@
-package de.halcony.ppm.basics
+package de.halcony.ppm.graph.generics
 
 import de.halcony.ppm.colors.CustomColor
 
