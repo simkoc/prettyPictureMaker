@@ -51,14 +51,11 @@ abstract class TikzSVG(outSvg: String,
 object TikzSVG extends LogSupport {
 
   private val PDFLATEX = "pdflatex"
-  private val PDF2SVG = "pdf2svg"
 
   final def compile(texFile: String, timeout: Int = 10000): Boolean = {
     assert(texFile.endsWith(".tex"))
     val folder = texFile.split("/").reverse.tail.reverse.mkString("/")
     val baseFile = texFile.split("/").last
-    val pdf = s"${baseFile.substring(0, baseFile.length - 4)}.pdf"
-    val svg = s"${baseFile.substring(0, baseFile.length - 4)}.svg"
     val future = Future {
       info(s"compiling tex file $baseFile")
       new jProcessBuilder(PDFLATEX, baseFile)
@@ -66,7 +63,7 @@ object TikzSVG extends LogSupport {
         .!!
     }(ExecutionContext.global)
     try {
-      Await.result(future, Duration(timeout, MILLISECONDS))
+      Await.result(future, Duration(timeout.toLong, MILLISECONDS))
       true
     } catch {
       case _: TimeoutException =>

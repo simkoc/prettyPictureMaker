@@ -35,8 +35,6 @@ case class Graph(axis: Axis) extends LogSupport {
     writeToFile(texFile)
     val folder = texFile.split("/").reverse.tail.reverse.mkString("/")
     val baseFile = texFile.split("/").last
-    val pdf = s"${baseFile.substring(0, baseFile.length - 4)}.pdf"
-    val svg = s"${baseFile.substring(0, baseFile.length - 4)}.svg"
     val future = Future {
       info(s"compiling tex file $baseFile")
       new jProcessBuilder(PDFLATEX, baseFile)
@@ -44,7 +42,7 @@ case class Graph(axis: Axis) extends LogSupport {
         .!!
     }(ExecutionContext.global)
     try {
-      Await.result(future, Duration(timeout, MILLISECONDS))
+      Await.result(future, Duration(timeout.toLong, MILLISECONDS))
       true
     } catch {
       case _: TimeoutException =>

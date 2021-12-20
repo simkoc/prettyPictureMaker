@@ -4,7 +4,8 @@ import de.halcony.ppm.basics.{Coordinate, Plot}
 import de.halcony.ppm.colors.Color
 
 case class StackedAreaPlot(override val coordinates: Seq[Coordinate],
-                           override val color: Color)
+                           override val color: Color,
+                           override val name : Option[String] = None)
     extends Plot {
 
   override def getCustomPlotConfigLines: String = ""

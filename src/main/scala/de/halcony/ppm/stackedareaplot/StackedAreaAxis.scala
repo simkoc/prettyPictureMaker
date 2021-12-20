@@ -1,6 +1,7 @@
 package de.halcony.ppm.stackedareaplot
 
 import de.halcony.ppm.basics.{Axis, Plot}
+import de.halcony.ppm.legends.Legend
 
 case class StackedAreaAxis(plots: Seq[StackedAreaPlot],
                            width: Option[Int] = None,
@@ -10,8 +11,11 @@ case class StackedAreaAxis(plots: Seq[StackedAreaPlot],
                            xmin: Option[Int] = Some(0),
                            xmax: Option[Int] = None,
                            ymin: Option[Int] = None,
-                           ymax: Option[Int] = None)
+                           ymax: Option[Int] = None,
+                           legend : Option[Legend] = None)
     extends Axis {
+
+  override def getLegend: Option[Legend] = legend
 
   override protected def getPlots: Seq[Plot] = plots
 

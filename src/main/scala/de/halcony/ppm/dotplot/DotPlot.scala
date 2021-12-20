@@ -5,7 +5,8 @@ import de.halcony.ppm.colors.{Black, Color}
 
 case class DotPlot(override val coordinates: Seq[Coordinate],
                    override val color: Color = Black,
-                   connect: Boolean = false)
+                   connect: Boolean = false,
+                   override val name : Option[String] = None)
     extends Plot {
 
   override def getCustomPlotConfigLines: String = {

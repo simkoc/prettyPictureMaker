@@ -1,6 +1,7 @@
 package de.halcony.ppm.dotplot
 
 import de.halcony.ppm.basics.{Axis, Plot}
+import de.halcony.ppm.legends.Legend
 
 case class DotPlotAxis(plots: Seq[DotPlot],
                        width: Option[Int] = None,
@@ -10,8 +11,11 @@ case class DotPlotAxis(plots: Seq[DotPlot],
                        xmin: Option[Int] = None,
                        xmax: Option[Int] = None,
                        ymin: Option[Int] = None,
-                       ymax: Option[Int] = None)
+                       ymax: Option[Int] = None,
+                       legend : Option[Legend] = None)
     extends Axis {
+
+  override def getLegend: Option[Legend] = legend
 
   override def customAxisConfigurationLines: String = {
     s"""${if (xtick.nonEmpty) { s"xtick=${xtick.mkString(",")}," } else ""}

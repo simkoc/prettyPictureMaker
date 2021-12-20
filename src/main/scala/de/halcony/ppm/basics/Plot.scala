@@ -6,6 +6,9 @@ trait Plot extends Plottable {
 
   protected val color: Color
   protected val coordinates: Seq[Coordinate]
+  protected val name : Option[String]
+
+  def getName: Option[String] = name
 
   def getCustomPlotConfigLines: String
 

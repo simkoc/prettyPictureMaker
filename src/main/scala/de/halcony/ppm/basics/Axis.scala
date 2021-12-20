@@ -1,7 +1,9 @@
 package de.halcony.ppm.basics
 import de.halcony.ppm.colors.CustomColor
+import de.halcony.ppm.legends.Legend
 import wvlet.log.LogSupport
 
+//todo: change this to this configuration to make shared expansion easier
 trait Axis extends Plottable with LogSupport {
 
   protected def getPlots: Seq[Plot]
@@ -11,6 +13,7 @@ trait Axis extends Plottable with LogSupport {
   protected def getXMax: Option[Int]
   protected def getYMin: Option[Int]
   protected def getYMax: Option[Int]
+  protected def getLegend : Option[Legend]
 
   override def getCustomColors: List[CustomColor] =
     getPlots.flatMap(_.getCustomColors).toSet.toList
@@ -22,6 +25,7 @@ trait Axis extends Plottable with LogSupport {
         $customAxisConfigurationLines
        ]
        ${getPlots.map(_.plot).mkString("\n")}
+       ${if (getLegend.nonEmpty) getLegend.get.plot(getPlots) else ""}
        \\end{axis}"""
     Plottable.purgeEmptyLines(plot)
   }

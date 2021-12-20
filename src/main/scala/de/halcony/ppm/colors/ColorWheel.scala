@@ -7,7 +7,7 @@ object NoMoreColorException extends Throwable {
     "there are no more available colors in the color wheel"
 }
 
-class ColorWheel(amount: Int = 18) {
+class ColorWheel() {
 
   private val used: MMap[Color, Boolean] = MMap(
     Red -> false,
