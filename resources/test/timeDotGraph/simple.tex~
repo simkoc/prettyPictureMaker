@@ -1,0 +1,13 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\usetikzlibrary{patterns}
+
+\begin{document}
+\begin{tikzpicture}
+\begin{Axis}[]
+       \addplot[
+  draw = black,
+  only marks
+] coordinates {(0,1) (1,2) (2,1)};
+       \end{axis}\end{tikzpicture}
+\end{document}
