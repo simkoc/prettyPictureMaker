@@ -7,4 +7,3 @@ class DefaultLegend[T <: Plot[T]]() extends Legend[T] {
   override def getLayoutConfigLines: String = ""
 
 }
-

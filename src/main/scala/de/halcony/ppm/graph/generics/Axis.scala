@@ -6,7 +6,7 @@ import wvlet.log.LogSupport
 import scala.collection.mutable.ListBuffer
 
 //todo: change this to this configuration to make shared expansion easier
-trait Axis[X <: Plot[X], T <: Axis[X,T]] extends Plottable with LogSupport {
+trait Axis[X <: Plot[X], T <: Axis[X, T]] extends Plottable with LogSupport {
 
   protected val plots: ListBuffer[X] = ListBuffer()
   private var width: Option[Int] = None
@@ -15,49 +15,49 @@ trait Axis[X <: Plot[X], T <: Axis[X,T]] extends Plottable with LogSupport {
   private var xmax: Option[Int] = None
   private var ymin: Option[Int] = None
   private var ymax: Option[Int] = None
-  private var legend : Option[Legend[X]] = None
+  private var legend: Option[Legend[X]] = None
 
-  def addPlot(plot : X) : T = {
+  def addPlot(plot: X): T = {
     plots.addOne(plot)
     this.asInstanceOf[T]
   }
 
-  def addPlots(plot : Seq[X]) : T = {
+  def addPlots(plot: Seq[X]): T = {
     plots.addAll(plot)
     this.asInstanceOf[T]
   }
 
-  def setWidth(width : Int) : T = {
+  def setWidth(width: Int): T = {
     this.width = Some(width)
     this.asInstanceOf[T]
   }
 
-  def setHeight(height : Int) : T = {
+  def setHeight(height: Int): T = {
     this.height = Some(height)
     this.asInstanceOf[T]
   }
 
-  def setXMin(xmin : Int) : T = {
+  def setXMin(xmin: Int): T = {
     this.xmin = Some(xmin)
     this.asInstanceOf[T]
   }
 
-  def setXMax(xmax : Int) : T = {
+  def setXMax(xmax: Int): T = {
     this.xmax = Some(xmax)
     this.asInstanceOf[T]
   }
 
-  def setYMin(ymin : Int) : T = {
+  def setYMin(ymin: Int): T = {
     this.ymin = Some(ymin)
     this.asInstanceOf[T]
   }
 
-  def setYMax(ymax : Int) : T = {
+  def setYMax(ymax: Int): T = {
     this.ymax = Some(ymax)
     this.asInstanceOf[T]
   }
 
-  def addLegend(legend : Legend[X]) : T = {
+  def addLegend(legend: Legend[X]): T = {
     this.legend = Some(legend)
     this.asInstanceOf[T]
   }

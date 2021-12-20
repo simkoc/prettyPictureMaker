@@ -9,31 +9,31 @@ trait Plot[T <: Plot[T]] extends Plottable {
 
   protected var color: Color = Black
   protected var coordinates: ListBuffer[Coordinate] = ListBuffer()
-  protected var name : Option[String] = None
+  protected var name: Option[String] = None
 
-  def setName(name : String) : T = {
+  def setName(name: String): T = {
     this.name = Some(name)
     this.asInstanceOf[T]
   }
 
-  def getName : Option[String] = name
+  def getName: Option[String] = name
 
-  def addCoordinate(coordinate : Coordinate) : T = {
+  def addCoordinate(coordinate: Coordinate): T = {
     this.coordinates.addOne(coordinate)
     this.asInstanceOf[T]
   }
 
-  def addCoordinates(coordinates : Seq[Coordinate]) : T = {
+  def addCoordinates(coordinates: Seq[Coordinate]): T = {
     this.coordinates.addAll(coordinates)
     this.asInstanceOf[T]
   }
 
-  def setColor(color : Color) : T = {
+  def setColor(color: Color): T = {
     this.color = color
     this.asInstanceOf[T]
   }
 
-  def getCoordinates : Seq[Coordinate] = coordinates.toList
+  def getCoordinates: Seq[Coordinate] = coordinates.toList
 
   def getCustomPlotConfigLines: String
 

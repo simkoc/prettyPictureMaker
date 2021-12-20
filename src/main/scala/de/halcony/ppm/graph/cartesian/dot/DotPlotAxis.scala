@@ -2,17 +2,17 @@ package de.halcony.ppm.graph.cartesian.dot
 
 import de.halcony.ppm.graph.generics.Axis
 
-class DotPlotAxis() extends Axis[DotPlot,DotPlotAxis] {
+class DotPlotAxis() extends Axis[DotPlot, DotPlotAxis] {
 
-  private var xticks : Option[Seq[String]] = None
-  private var yticks : Option[Seq[String]] = None
+  private var xticks: Option[Seq[String]] = None
+  private var yticks: Option[Seq[String]] = None
 
-  def setXTicks(xticks : Seq[String]) : DotPlotAxis = {
+  def setXTicks(xticks: Seq[String]): DotPlotAxis = {
     this.xticks = Some(xticks)
     this
   }
 
-  def setYTicks(yticks : Seq[String]) : DotPlotAxis = {
+  def setYTicks(yticks: Seq[String]): DotPlotAxis = {
     this.yticks = Some(yticks)
     this
   }

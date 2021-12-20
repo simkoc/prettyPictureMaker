@@ -2,8 +2,7 @@ package de.halcony.ppm.graph.cartesian.stackedarea
 
 import de.halcony.ppm.graph.generics.Plot
 
-class StackedAreaPlot()  extends Plot[StackedAreaPlot] {
-
+class StackedAreaPlot() extends Plot[StackedAreaPlot] {
 
   override def getCustomPlotConfigLines: String = ""
 

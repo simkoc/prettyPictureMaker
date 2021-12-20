@@ -8,13 +8,13 @@ import java.io.{File, FileWriter}
 import scala.concurrent.duration.{Duration, MILLISECONDS}
 import scala.concurrent.{Await, ExecutionContext, Future, TimeoutException}
 
-class Graph[X <: Plot[X], T <: Axis[X,T]]() extends LogSupport {
+class Graph[X <: Plot[X], T <: Axis[X, T]]() extends LogSupport {
 
-  protected var axis : Option[T] = None
+  protected var axis: Option[T] = None
 
-  def setAxis(axis : T) : Graph[X,T] = {
+  def setAxis(axis: T): Graph[X, T] = {
     this.axis = Some(axis)
-    this.asInstanceOf[Graph[X,T]]
+    this.asInstanceOf[Graph[X, T]]
   }
 
   def plot: String = {
@@ -63,11 +63,9 @@ class Graph[X <: Plot[X], T <: Axis[X,T]]() extends LogSupport {
     s"""\\documentclass[tikz]{standalone}
        |\\usepackage{pgfplots}
        |\\usetikzlibrary{patterns}
-       |${
-      customColors
-        .map(_.getColorDefinition)
-        .mkString("\n")
-    }
+       |${customColors
+         .map(_.getColorDefinition)
+         .mkString("\n")}
        |\\begin{document}
        |\\begin{tikzpicture}
        |""".stripMargin
