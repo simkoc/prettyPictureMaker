@@ -6,11 +6,11 @@ case class Coordinate(x: String, y: String) {
 
 object Coordinate {
 
-  def apply(x : Int, y : Int) : Coordinate = {
-    Coordinate(x.toString,y.toString)
+  def apply(x: Int, y: Int): Coordinate = {
+    Coordinate(x.toString, y.toString)
   }
 
-  def apply(x : Double, y : Double) : Coordinate = {
+  def apply(x: Double, y: Double): Coordinate = {
     Coordinate(x.toString, y.toString)
   }
 

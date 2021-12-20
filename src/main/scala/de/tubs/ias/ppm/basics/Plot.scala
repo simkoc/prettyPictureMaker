@@ -4,14 +4,14 @@ import de.tubs.ias.ppm.colors.{Color, CustomColor}
 
 trait Plot extends Plottable {
 
-  protected val color : Color
-  protected val coordinates : Seq[Coordinate]
+  protected val color: Color
+  protected val coordinates: Seq[Coordinate]
 
-  def getCustomPlotConfigLines : String
+  def getCustomPlotConfigLines: String
 
   override def plot: String = {
     println("stuff: " + getCustomPlotConfigLines)
-      s"""\\addplot[
+    s"""\\addplot[
          |  draw = $color,
          |  $getCustomPlotConfigLines
          |] coordinates {${coordinates.map(_.toString).mkString(" ")}};
@@ -19,8 +19,8 @@ trait Plot extends Plottable {
   }
 
   override def getCustomColors: List[CustomColor] = color match {
-    case x : CustomColor => List(x)
-    case _ => List()
+    case x: CustomColor => List(x)
+    case _              => List()
   }
 
 }

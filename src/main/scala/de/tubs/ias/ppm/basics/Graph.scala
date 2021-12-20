@@ -18,7 +18,7 @@ case class Graph(axis: Axis) extends LogSupport {
     bw.toString()
   }
 
-  def writeToFile(texFile : String) : Unit = {
+  def writeToFile(texFile: String): Unit = {
     val fw = new FileWriter(new File(texFile))
     try {
       fw.write(plot)
