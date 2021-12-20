@@ -72,9 +72,9 @@ object BarGraph extends LogSupport {
       }
     }
     val max: Option[Int] = orientation match {
-      case de.tubs.ias.ppm.bargraph.BarOrientation.horizontal =>
+      case BarOrientation.horizontal =>
         Coordinate.getMaxY(plots.flatMap(_.coordinates))
-      case de.tubs.ias.ppm.bargraph.BarOrientation.vertical =>
+      case BarOrientation.vertical =>
         Coordinate.getMaxY(plots.flatMap(_.coordinates))
     }
 

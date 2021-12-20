@@ -10,7 +10,6 @@ trait Plot extends Plottable {
   def getCustomPlotConfigLines: String
 
   override def plot: String = {
-    println("stuff: " + getCustomPlotConfigLines)
     s"""\\addplot[
          |  draw = $color,
          |  $getCustomPlotConfigLines
