@@ -64,10 +64,6 @@ object TikzSVG extends LogSupport {
       new jProcessBuilder(PDFLATEX, baseFile)
         .directory(new File(folder))
         .!!
-      info(s"processing $pdf to $svg")
-      new jProcessBuilder(PDF2SVG, pdf, svg)
-        .directory(new File(folder))
-        .!!
     }(ExecutionContext.global)
     try {
       Await.result(future, Duration(timeout, MILLISECONDS))
