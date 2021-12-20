@@ -3,10 +3,14 @@ package de.halcony.ppm.dotplot
 import de.halcony.ppm.basics.{Axis, Plot}
 
 case class DotPlotAxis(plots: Seq[DotPlot],
-                       width: Option[Int] = None, height: Option[Int] = None,
-                       xtick: Option[Seq[String]] = None, ytick: Option[Seq[String]] = None,
-                       xmin : Option[Int] = None, xmax : Option[Int] = None,
-                       ymin : Option[Int] = None, ymax : Option[Int] = None)
+                       width: Option[Int] = None,
+                       height: Option[Int] = None,
+                       xtick: Option[Seq[String]] = None,
+                       ytick: Option[Seq[String]] = None,
+                       xmin: Option[Int] = None,
+                       xmax: Option[Int] = None,
+                       ymin: Option[Int] = None,
+                       ymax: Option[Int] = None)
     extends Axis {
 
   override def customAxisConfigurationLines: String = {

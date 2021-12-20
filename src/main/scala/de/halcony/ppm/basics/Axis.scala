@@ -7,10 +7,10 @@ trait Axis extends Plottable with LogSupport {
   protected def getPlots: Seq[Plot]
   protected def getWidth: Option[Int]
   protected def getHeight: Option[Int]
-  protected def getXMin : Option[Int]
-  protected def getXMax : Option[Int]
-  protected def getYMin : Option[Int]
-  protected def getYMax : Option[Int]
+  protected def getXMin: Option[Int]
+  protected def getXMax: Option[Int]
+  protected def getYMin: Option[Int]
+  protected def getYMax: Option[Int]
 
   override def getCustomColors: List[CustomColor] =
     getPlots.flatMap(_.getCustomColors).toSet.toList
