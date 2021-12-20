@@ -11,7 +11,7 @@ trait Plot extends Plottable {
 
   override def plot: String = {
     s"""\\addplot[
-         |  draw = $color,
+         |  color = $color,
          |  $getCustomPlotConfigLines
          |] coordinates {${coordinates.map(_.toString).mkString(" ")}};
          |""".stripMargin
