@@ -30,8 +30,7 @@ case class Graph(axis: Axis) extends LogSupport {
 
   def compile(texFile: String,
               timeout: Int = 10000,
-              PDFLATEX: String = "pdflatex",
-              PDF2SVG: String = "pdf2svg"): Boolean = {
+              PDFLATEX: String = "pdflatex"): Boolean = {
     assert(texFile.endsWith(".tex"))
     writeToFile(texFile)
     val folder = texFile.split("/").reverse.tail.reverse.mkString("/")
@@ -41,10 +40,6 @@ case class Graph(axis: Axis) extends LogSupport {
     val future = Future {
       info(s"compiling tex file $baseFile")
       new jProcessBuilder(PDFLATEX, baseFile)
-        .directory(new File(folder))
-        .!!
-      info(s"processing $pdf to $svg")
-      new jProcessBuilder(PDF2SVG, pdf, svg)
         .directory(new File(folder))
         .!!
     }(ExecutionContext.global)
