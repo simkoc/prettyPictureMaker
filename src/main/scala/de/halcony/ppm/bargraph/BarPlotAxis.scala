@@ -1,7 +1,7 @@
-package de.tubs.ias.ppm.bargraph
+package de.halcony.ppm.bargraph
 
 import BarOrientation._
-import de.tubs.ias.ppm.basics.Coordinate
+import de.halcony.ppm.basics.Coordinate
 import wvlet.log.LogSupport
 
 /**

@@ -1,4 +1,4 @@
-package de.tubs.ias.ppm.dotplot
+package de.halcony.ppm.dotplot
 
 case class DotCoordinate(x: Double, y: Double) {
 

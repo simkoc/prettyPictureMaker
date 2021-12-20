@@ -1,7 +1,7 @@
-package de.tubs.ias.ppm.bargraph
+package de.halcony.ppm.bargraph
 
-import de.tubs.ias.ppm.basics.Coordinate
-import de.tubs.ias.ppm.colors.Color
+import de.halcony.ppm.basics.Coordinate
+import de.halcony.ppm.colors.Color
 
 case class BarPlot(lineColor: Color,
                    lineWidth: Double,

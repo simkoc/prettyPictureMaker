@@ -1,6 +1,6 @@
-package de.tubs.ias.ppm.basics
+package de.halcony.ppm.basics
 
-import de.tubs.ias.ppm.colors.CustomColor
+import de.halcony.ppm.colors.CustomColor
 
 trait Plottable {
 

@@ -1,4 +1,4 @@
-package de.tubs.ias.ppm.colors
+package de.halcony.ppm.colors
 
 trait Color {
   def toString: String

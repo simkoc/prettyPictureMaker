@@ -1,7 +1,7 @@
-package de.tubs.ias.ppm.dotplot
+package de.halcony.ppm.dotplot
 
-import de.tubs.ias.ppm.basics.{Coordinate, Plot}
-import de.tubs.ias.ppm.colors.{Black, Color}
+import de.halcony.ppm.basics.{Coordinate, Plot}
+import de.halcony.ppm.colors.{Black, Color}
 
 case class DotPlot(override val coordinates: Seq[Coordinate],
                    override val color: Color = Black,

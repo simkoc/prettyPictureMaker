@@ -1,4 +1,4 @@
-package de.tubs.ias.ppm.basics
+package de.halcony.ppm.basics
 
 import wvlet.log.LogSupport
 

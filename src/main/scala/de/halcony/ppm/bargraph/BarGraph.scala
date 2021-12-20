@@ -1,10 +1,10 @@
-package de.tubs.ias.ppm.bargraph
+package de.halcony.ppm.bargraph
 
-import de.tubs.ias.ppm.bargraph.BarOrientation.BarOrientation
-import de.tubs.ias.ppm.bargraph.Sorting.{ASC, DESC, SortingDirection}
-import de.tubs.ias.ppm.basics.Coordinate
-import de.tubs.ias.ppm.colors.{CustomColor, Red}
-import de.tubs.ias.ppm.tikzGeneral.TikzSVG
+import de.halcony.ppm.bargraph.BarOrientation.BarOrientation
+import de.halcony.ppm.bargraph.Sorting.{ASC, DESC, SortingDirection}
+import de.halcony.ppm.basics.Coordinate
+import de.halcony.ppm.colors.{CustomColor, Red}
+import de.halcony.ppm.tikzGeneral.TikzSVG
 import wvlet.log.LogSupport
 
 import scala.io.Source

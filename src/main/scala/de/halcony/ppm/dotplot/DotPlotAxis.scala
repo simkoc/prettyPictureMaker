@@ -1,6 +1,6 @@
-package de.tubs.ias.ppm.dotplot
+package de.halcony.ppm.dotplot
 
-import de.tubs.ias.ppm.basics.{Axis, Plot}
+import de.halcony.ppm.basics.{Axis, Plot}
 
 case class DotPlotAxis(plots: Seq[DotPlot],
                        width: Option[Int] = None,

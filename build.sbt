@@ -1,6 +1,6 @@
 name := "prettyPictureMaker"
 ThisBuild / scalaVersion := "2.13.3"
-organization := "de.tubs.ias"
+organization := "de.halcony"
 
 enablePlugins(JavaAppPackaging)
 

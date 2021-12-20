@@ -1,6 +1,6 @@
-package de.tubs.ias.ppm.dotplot
+package de.halcony.ppm.dotplot
 
-import de.tubs.ias.ppm.basics.{Coordinate, Graph}
+import de.halcony.ppm.basics.{Coordinate, Graph}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

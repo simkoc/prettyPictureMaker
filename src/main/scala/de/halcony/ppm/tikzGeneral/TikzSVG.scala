@@ -1,6 +1,6 @@
-package de.tubs.ias.ppm.tikzGeneral
+package de.halcony.ppm.tikzGeneral
 
-import de.tubs.ias.ppm.colors.CustomColor
+import de.halcony.ppm.colors.CustomColor
 import wvlet.log.LogSupport
 
 import java.io.{BufferedWriter, File, FileWriter}

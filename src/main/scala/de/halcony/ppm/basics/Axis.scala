@@ -1,5 +1,5 @@
-package de.tubs.ias.ppm.basics
-import de.tubs.ias.ppm.colors.CustomColor
+package de.halcony.ppm.basics
+import de.halcony.ppm.colors.CustomColor
 import wvlet.log.LogSupport
 
 trait Axis extends Plottable with LogSupport {

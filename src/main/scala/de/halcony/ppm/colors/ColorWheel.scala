@@ -1,4 +1,4 @@
-package de.tubs.ias.ppm.colors
+package de.halcony.ppm.colors
 
 import scala.collection.mutable.{Map => MMap}
 

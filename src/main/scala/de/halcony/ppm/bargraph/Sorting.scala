@@ -1,4 +1,4 @@
-package de.tubs.ias.ppm.bargraph
+package de.halcony.ppm.bargraph
 
 object Sorting extends Enumeration {
   type SortingDirection = Value

@@ -1,16 +1,16 @@
-package de.tubs.ias.ppm
+package de.halcony.ppm
 
 import de.halcony.argparse.{Parser, ParsingException, ParsingResult}
-import de.tubs.ias.ppm.bargraph.{
+import de.halcony.ppm.bargraph.{
   BarPlotAxis,
   BarGraph,
   BarOrientation,
   BarPlot,
   Sorting
 }
-import de.tubs.ias.ppm.basics.Coordinate
-import de.tubs.ias.ppm.colors.{Red, Yellow}
-import de.tubs.ias.ppm.tikzGeneral.TikzSVG
+import de.halcony.ppm.basics.Coordinate
+import de.halcony.ppm.colors.{Red, Yellow}
+import de.halcony.ppm.tikzGeneral.TikzSVG
 import wvlet.log.LogSupport
 
 object PrettyPictureMaker extends LogSupport {

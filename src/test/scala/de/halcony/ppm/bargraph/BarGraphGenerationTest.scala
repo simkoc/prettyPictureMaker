@@ -1,8 +1,8 @@
-package de.tubs.ias.ppm.bargraph
+package de.halcony.ppm.bargraph
 
-import de.tubs.ias.ppm.basics.Coordinate
-import de.tubs.ias.ppm.colors.{Blue, CustomColor, Red}
-import de.tubs.ias.ppm.tikzGeneral.TikzSVG
+import de.halcony.ppm.basics.Coordinate
+import de.halcony.ppm.colors.{Blue, CustomColor, Red}
+import de.halcony.ppm.tikzGeneral.TikzSVG
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
