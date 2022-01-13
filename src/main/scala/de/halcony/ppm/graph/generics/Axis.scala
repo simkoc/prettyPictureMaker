@@ -5,7 +5,6 @@ import de.halcony.ppm.graph.legends.Legend
 import wvlet.log.LogSupport
 import scala.collection.mutable.ListBuffer
 
-
 trait Axis extends Plottable with LogSupport {
 
   protected val plots: ListBuffer[Plot] = ListBuffer()
@@ -43,7 +42,7 @@ trait Axis extends Plottable with LogSupport {
     this
   }
 
-  def setSide(side : Side) : Axis = {
+  def setSide(side: Side): Axis = {
     this.side = side
     this
   }

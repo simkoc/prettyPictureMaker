@@ -20,8 +20,8 @@ class Graph() extends LogSupport {
   def plot: String = {
     val bw = new StringBuilder()
     bw.append(getBoilerplateHead)
-    axis.foreach {
-      axis => bw.append(axis.plot + "\n")
+    axis.foreach { axis =>
+      bw.append(axis.plot + "\n")
     }
     //bw.append(axis.get.plot + "\n")
     bw.append(getBoilerplateTail)
