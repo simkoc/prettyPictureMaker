@@ -2,7 +2,7 @@ package de.halcony.ppm.graph.cartesian.dot
 
 import de.halcony.ppm.graph.generics.Axis
 
-class DotPlotAxis() extends Axis[DotPlot, DotPlotAxis] {
+class DotPlotAxis() extends Axis {
 
   private var xticks: Option[Seq[String]] = None
   private var yticks: Option[Seq[String]] = None

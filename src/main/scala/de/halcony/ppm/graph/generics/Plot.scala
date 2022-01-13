@@ -5,32 +5,32 @@ import de.halcony.ppm.graph.Coordinate
 
 import scala.collection.mutable.ListBuffer
 
-trait Plot[T <: Plot[T]] extends Plottable {
+trait Plot extends Plottable {
 
   protected var color: Color = Black
   protected var coordinates: ListBuffer[Coordinate] = ListBuffer()
   protected var name: Option[String] = None
 
-  def setName(name: String): T = {
+  def setName(name: String): Plot = {
     this.name = Some(name)
-    this.asInstanceOf[T]
+    this
   }
 
   def getName: Option[String] = name
 
-  def addCoordinate(coordinate: Coordinate): T = {
+  def addCoordinate(coordinate: Coordinate): Plot = {
     this.coordinates.addOne(coordinate)
-    this.asInstanceOf[T]
+    this
   }
 
-  def addCoordinates(coordinates: Seq[Coordinate]): T = {
+  def addCoordinates(coordinates: Seq[Coordinate]): Plot = {
     this.coordinates.addAll(coordinates)
-    this.asInstanceOf[T]
+    this
   }
 
-  def setColor(color: Color): T = {
+  def setColor(color: Color): Plot = {
     this.color = color
-    this.asInstanceOf[T]
+    this
   }
 
   def getCoordinates: Seq[Coordinate] = coordinates.toList

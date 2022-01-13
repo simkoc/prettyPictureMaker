@@ -2,7 +2,7 @@ package de.halcony.ppm.graph.cartesian.stackedarea
 
 import de.halcony.ppm.graph.generics.Axis
 
-class StackedAreaAxis() extends Axis[StackedAreaPlot, StackedAreaAxis] {
+class StackedAreaAxis() extends Axis {
 
   private var xticks: Option[Seq[String]] = None
   private var yticks: Option[Seq[String]] = None

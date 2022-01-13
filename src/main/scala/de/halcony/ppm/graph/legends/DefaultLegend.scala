@@ -1,8 +1,6 @@
 package de.halcony.ppm.graph.legends
 
-import de.halcony.ppm.graph.generics.Plot
-
-class DefaultLegend[T <: Plot[T]]() extends Legend[T] {
+class DefaultLegend() extends Legend {
 
   override def getLayoutConfigLines: String = ""
 

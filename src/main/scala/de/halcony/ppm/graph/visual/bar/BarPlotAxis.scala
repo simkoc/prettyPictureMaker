@@ -5,7 +5,7 @@ import de.halcony.ppm.graph.generics.Axis
 import de.halcony.ppm.graph.visual.bar.BarOrientation._
 import wvlet.log.LogSupport
 
-class BarPlotAxis() extends Axis[BarPlot, BarPlotAxis] with LogSupport {
+class BarPlotAxis() extends Axis with LogSupport {
 
   protected var axisOrientation: BarOrientation = BarOrientation.vertical
   protected var barWidth: Double = 0.5

@@ -3,7 +3,7 @@ package de.halcony.ppm.graph.visual.bar
 import de.halcony.ppm.colors.{Black, Color, CustomColor}
 import de.halcony.ppm.graph.generics.Plot
 
-class BarPlot() extends Plot[BarPlot] {
+class BarPlot() extends Plot {
 
   protected var lineColor: Color = Black
   protected var fillColor: Color = Black

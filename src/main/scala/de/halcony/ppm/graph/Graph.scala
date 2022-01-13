@@ -1,26 +1,29 @@
 package de.halcony.ppm.graph
 
-import de.halcony.ppm.graph.generics.{Axis, Plot}
+import de.halcony.ppm.graph.generics.Axis
 import wvlet.log.LogSupport
-import scala.sys.process._
-import java.lang.{ProcessBuilder => jProcessBuilder}
 import java.io.{File, FileWriter}
+import java.lang.{ProcessBuilder => jProcessBuilder}
 import scala.concurrent.duration.{Duration, MILLISECONDS}
 import scala.concurrent.{Await, ExecutionContext, Future, TimeoutException}
+import scala.sys.process._
 
-class Graph[X <: Plot[X], T <: Axis[X, T]]() extends LogSupport {
+class Graph() extends LogSupport {
 
-  protected var axis: Option[T] = None
+  protected var axis: Set[Axis] = Set()
 
-  def setAxis(axis: T): Graph[X, T] = {
-    this.axis = Some(axis)
-    this.asInstanceOf[Graph[X, T]]
+  def addAxis(axis: Axis): Graph = {
+    this.axis = this.axis ++ Set(axis)
+    this
   }
 
   def plot: String = {
     val bw = new StringBuilder()
     bw.append(getBoilerplateHead)
-    bw.append(axis.get.plot + "\n")
+    axis.foreach {
+      axis => bw.append(axis.plot + "\n")
+    }
+    //bw.append(axis.get.plot + "\n")
     bw.append(getBoilerplateTail)
     bw.toString()
   }
@@ -59,7 +62,7 @@ class Graph[X <: Plot[X], T <: Axis[X, T]]() extends LogSupport {
   }
 
   private def getBoilerplateHead: String = {
-    val customColors = axis.get.getCustomColors
+    val customColors = axis.flatMap(_.getCustomColors)
     s"""\\documentclass[tikz]{standalone}
        |\\usepackage{pgfplots}
        |\\usetikzlibrary{patterns}
