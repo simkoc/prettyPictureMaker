@@ -3,26 +3,33 @@ package de.halcony.ppm.graph.visual.bar
 import de.halcony.ppm.graph.Coordinate
 import de.halcony.ppm.graph.generics.Axis
 import de.halcony.ppm.graph.visual.bar.BarOrientation._
+import de.halcony.ppm.utility.OptionExtensions.ExtendedOption
 import wvlet.log.LogSupport
 
 class BarPlotAxis() extends Axis with LogSupport {
 
   protected var axisOrientation: BarOrientation = BarOrientation.vertical
-  protected var barWidth: Double = 0.5
-  protected var barSeparation: Double = 0.5
+  protected var barWidth: Int = 5
+  protected var barShiftPt: Option[Int] = None
+  protected var nodesNearCoords: Option[NodesNearCoords] = None
+
+  def setNodesNearCoords(specs: NodesNearCoords): BarPlotAxis = {
+    nodesNearCoords = Some(specs)
+    this
+  }
 
   def setBarOrientation(orientation: BarOrientation): BarPlotAxis = {
     axisOrientation = orientation
     this
   }
 
-  def setBarWidth(width: Double): BarPlotAxis = {
-    barWidth = width
+  def setBarWidth(pt: Int): BarPlotAxis = {
+    barWidth = pt
     this
   }
 
-  def setBarSeparation(separation: Double): BarPlotAxis = {
-    barSeparation = separation
+  def setBarShift(pt: Int): BarPlotAxis = {
+    barShiftPt = Some(pt)
     this
   }
 
@@ -35,13 +42,15 @@ class BarPlotAxis() extends Axis with LogSupport {
       case BarOrientation.horizontal => "y"
       case BarOrientation.vertical   => "x"
     }
-    val labels = plots.flatMap(_.getCoordinates.map(getLabel)).toSet
-    s"""${if (!areLabelNumeric) {
-         s"symbolic $oo coords={ ${labels.mkString(",")} },"
+    val labels = plots.flatMap(_.getCoordinates.map(getLabel))
+    s"""${o}bar,
+        ${if (!areLabelNumeric) {
+         s"symbolic $oo coords={${labels.mkString(",")}},"
        } else ""}
-        ${o}bar = ${barSeparation}cm,
-        bar width = ${barWidth}cm,
-        ${oo}tick = data,
+       ${nodesNearCoords.processOrElse(value => s"${value.getSpecs},", "")}
+       ${barShiftPt.processOrElse(value => s"bar shift=${value}pt,", "")}
+       bar width=${barWidth}pt,
+       ${oo}tick=data,
     """.stripMargin
   }
 
