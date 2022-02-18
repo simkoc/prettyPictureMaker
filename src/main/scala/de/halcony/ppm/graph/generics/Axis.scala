@@ -25,6 +25,19 @@ trait Axis extends Plottable with LogSupport {
   private var enlargeLimits: Option[Double] = None
   private var drawXTicks: Boolean = true
   private var drawYTicks: Boolean = true
+  private var noXArrowTip : String = ""
+  private var noYArrowTip : String = ""
+
+  def disableXArrowTip() : Axis = {
+    noXArrowTip = "*"
+    this
+  }
+
+  def disableYArrowTip() : Axis = {
+    noYArrowTip = "*"
+    this
+  }
+
 
   def disableXTicks(): Axis = {
     drawXTicks = false
@@ -136,8 +149,8 @@ trait Axis extends Plottable with LogSupport {
   private def getBoilerplateCode: String = {
     s"""${if (width.nonEmpty) s"width=${width.get}cm," else ""}
         ${if (height.nonEmpty) s"height=${height.get}cm," else ""}
-        ${yAxisAlignment.processOrElse(value => s"axis y line=$value,", "")}
-        ${xAxisAlignment.processOrElse(value => s"axis x line=$value,", "")}
+        ${yAxisAlignment.processOrElse(value => s"axis y line$noYArrowTip=$value,", "")}
+        ${xAxisAlignment.processOrElse(value => s"axis x line$noXArrowTip=$value,", "")}
         ${ytickspt.processOrElse(value => s"y=${value}pt,", "")}
         ${xtickspt.processOrElse(value => s"x=${value}pt,", "")}
         ${enlargeLimits.processOrElse(
