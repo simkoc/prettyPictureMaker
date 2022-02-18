@@ -61,12 +61,12 @@ trait Axis extends Plottable with LogSupport {
     this
   }
 
-  def yAxisAlignment(alignment: AxisAlignment.Alignment): Axis = {
+  def setYAxisAlignment(alignment: AxisAlignment.Alignment): Axis = {
     yAxisAlignment = Some(alignment)
     this
   }
 
-  def xAxisAlignment(alignment: AxisAlignment.Alignment): Axis = {
+  def setXAxisAlignment(alignment: AxisAlignment.Alignment): Axis = {
     xAxisAlignment = Some(alignment)
     this
   }

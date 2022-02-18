@@ -70,7 +70,7 @@ class BarGraphGenerationTest extends AnyWordSpec with Matchers {
               new BarPlot().setColor(Red).setLineColor(Black).addCoordinates(
                 List(Coordinate("19","D"),Coordinate("35","E"),Coordinate("65","F"))
               )
-            ).xAxisAlignment(LEFT).yAxisAlignment(CENTER).setNoYTickLabels().setYTicksSpacing(4)
+            ).setXAxisAlignment(LEFT).setYAxisAlignment(CENTER).setNoYTickLabels().setYTicksSpacing(4)
             .enlargeLimits(0.2).disableYTicks()
         ).compile(s"$testOutputDirectory/keyness.tex") shouldBe true
     }
