@@ -1,6 +1,7 @@
 package de.halcony.ppm.graph.visual.bar
 
-import de.halcony.ppm.colors.{Blue, CustomColor, Red}
+import de.halcony.ppm.colors.{Black, Blue, CustomColor, Green, Red}
+import de.halcony.ppm.graph.generics.AxisAlignment.{CENTER, LEFT}
 import de.halcony.ppm.graph.{Coordinate, Graph}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
@@ -54,6 +55,24 @@ class BarGraphGenerationTest extends AnyWordSpec with Matchers {
             new BarPlot().setColor(tdgreen).addCoordinates(List(Coordinate("0", "1"), Coordinate("1", "2")))
         )
       ).compile(s"$testOutputDirectory/vertical5.tex") shouldBe true
+    }
+    "generate a two sided bar graph without spaces" in {
+      new Graph()
+        .addAxis(
+          new BarPlotAxis().setBarOrientation(BarOrientation.horizontal)
+            .setBarShift(0)
+            .setBarWidth(4)
+            .addPlot(
+              new BarPlot().setColor(Green).setLineColor(Black).addCoordinates(
+                List(Coordinate("-58","A"),Coordinate("-45","B"),Coordinate("-43","C"))
+              )
+            ).addPlot(
+              new BarPlot().setColor(Red).setLineColor(Black).addCoordinates(
+                List(Coordinate("19","D"),Coordinate("35","E"),Coordinate("65","F"))
+              )
+            ).xAxisAlignment(LEFT).yAxisAlignment(CENTER).setNoYTickLabels().setYTicksSpacing(4)
+            .enlargeLimits(0.2).disableYTicks()
+        ).compile(s"$testOutputDirectory/keyness.tex") shouldBe true
     }
   }
 }
