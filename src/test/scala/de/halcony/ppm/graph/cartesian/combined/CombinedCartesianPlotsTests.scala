@@ -3,7 +3,6 @@ package de.halcony.ppm.graph.cartesian.combined
 import de.halcony.ppm.colors.Green
 import de.halcony.ppm.graph.cartesian.dot.{DotPlot, DotPlotAxis}
 import de.halcony.ppm.graph.cartesian.stackedarea.{StackedAreaAxis, StackedAreaPlot}
-import de.halcony.ppm.graph.generics.Side._
 import de.halcony.ppm.graph.{Coordinate, Graph}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
@@ -21,7 +20,7 @@ class CombinedCartesianPlotsTests extends AnyWordSpec with Matchers {
       new Graph().
         addAxis(new StackedAreaAxis()
           .addPlot(new StackedAreaPlot().addCoordinates(coordinatesA).setColor(Green)))
-        .addAxis(new DotPlotAxis().setSide(RIGHT)
+        .addAxis(new DotPlotAxis()
           .addPlot(new DotPlot().setConnected(true).addCoordinates(coordinatesB)))
         .compile(outFile,timeout = 3000) shouldBe true
     }
