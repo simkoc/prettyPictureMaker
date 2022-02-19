@@ -4,15 +4,17 @@ import de.halcony.ppm.graph.generics.Plot
 
 class StackedAreaPlot() extends Plot {
 
-  override def getCustomPlotConfigLines: String = ""
+  override def getCustomPlotConfigLines: String = s"fill=$color"
 
   override def plot: String = {
-    s"""\\addplot[
+    /*s"""\\addplot[
        |  fill = $color,
        |  $getCustomPlotConfigLines
-       |] coordinates {${coordinates.map(_.toString).mkString(" ")}}
+       |] coordinates {${entries.map(_.toString).mkString(" ")}}
        | \\closedcycle;
-       |""".stripMargin
+       |""".stripMargin*/
+    val superPlot = super.plot
+    superPlot.substring(0, superPlot.length - 1) ++ "\n\\closedcycle;"
   }
 
 }
