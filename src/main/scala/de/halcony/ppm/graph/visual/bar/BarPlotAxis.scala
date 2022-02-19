@@ -1,7 +1,6 @@
 package de.halcony.ppm.graph.visual.bar
 
-import de.halcony.ppm.graph.Coordinate
-import de.halcony.ppm.graph.generics.Axis
+import de.halcony.ppm.graph.generics.{Axis, Plot}
 import de.halcony.ppm.graph.visual.bar.BarOrientation._
 import de.halcony.ppm.utility.OptionExtensions.ExtendedOption
 import wvlet.log.LogSupport
@@ -11,10 +10,20 @@ class BarPlotAxis() extends Axis with LogSupport {
   protected var axisOrientation: BarOrientation = BarOrientation.vertical
   protected var barWidth: Int = 5
   protected var barShiftPt: Option[Int] = None
-  protected var nodesNearCoords: Option[NodesNearCoords] = None
 
-  def setNodesNearCoords(specs: NodesNearCoords): BarPlotAxis = {
-    nodesNearCoords = Some(specs)
+  override def addPlot(barPlot: Plot): Axis = {
+    assert(barPlot.isInstanceOf[BarPlot], "you can only add BarPlots")
+    super.addPlot(barPlot)
+    this
+  }
+  override def addPlots(barPlots: Seq[Plot]): Axis = {
+    assert(barPlots.forall(_.isInstanceOf[BarPlot]),
+           "you can only add BarPlots")
+    super.addPlots(barPlots)
+    this
+  }
+  def addPlots(barPlots: Seq[BarPlot]): BarPlotAxis = {
+    super.addPlots(barPlots)
     this
   }
 
@@ -42,34 +51,11 @@ class BarPlotAxis() extends Axis with LogSupport {
       case BarOrientation.horizontal => "y"
       case BarOrientation.vertical   => "x"
     }
-    val labels = plots.flatMap(_.getCoordinates.map(getLabel))
     s"""${o}bar,
-        ${if (!areLabelNumeric) {
-         s"symbolic $oo coords={${labels.mkString(",")}},"
-       } else ""}
-       ${nodesNearCoords.processOrElse(value => s"${value.getSpecs},", "")}
-       ${barShiftPt.processOrElse(value => s"bar shift=${value}pt,", "")}
-       bar width=${barWidth}pt,
-       ${oo}tick=data,
+        ${barShiftPt.processOrElse(value => s"bar shift=${value}pt,", "")}
+        bar width=${barWidth}pt,
+        ${oo}tick=data,
     """.stripMargin
-  }
-
-  private def getLabel(coordinate: Coordinate): String = {
-    axisOrientation match {
-      case BarOrientation.vertical   => coordinate.x
-      case BarOrientation.horizontal => coordinate.y
-    }
-  }
-
-  private def areLabelNumeric: Boolean = {
-    try {
-      plots.foreach(_.getCoordinates.foreach(elem => getLabel(elem).toDouble))
-      true
-    } catch {
-      case _: Throwable =>
-        info("detected non-numeric labels")
-        false
-    }
   }
 
 }
