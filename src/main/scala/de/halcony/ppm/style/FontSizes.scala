@@ -1,4 +1,4 @@
-package de.halcony.ppm.graph.generics
+package de.halcony.ppm.style
 
 object FontSizes extends Enumeration {
 
