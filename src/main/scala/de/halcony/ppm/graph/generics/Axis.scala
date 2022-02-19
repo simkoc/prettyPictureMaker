@@ -25,19 +25,18 @@ trait Axis extends Plottable with LogSupport {
   private var enlargeLimits: Option[Double] = None
   private var drawXTicks: Boolean = true
   private var drawYTicks: Boolean = true
-  private var noXArrowTip : String = ""
-  private var noYArrowTip : String = ""
+  private var noXArrowTip: String = ""
+  private var noYArrowTip: String = ""
 
-  def disableXArrowTip() : Axis = {
+  def disableXArrowTip(): Axis = {
     noXArrowTip = "*"
     this
   }
 
-  def disableYArrowTip() : Axis = {
+  def disableYArrowTip(): Axis = {
     noYArrowTip = "*"
     this
   }
-
 
   def disableXTicks(): Axis = {
     drawXTicks = false
@@ -147,10 +146,32 @@ trait Axis extends Plottable with LogSupport {
   protected def customAxisConfigurationLines: String
 
   private def getBoilerplateCode: String = {
+    val symbolicXCoords =
+      if (plots.exists(_.getEntries.exists(_.isSymbolic(0)))) {
+        Some(plots.flatMap(_.getEntries.map(_.getColumnValue(0))))
+      } else {
+        None
+      }
+    val symbolicYCoords =
+      if (plots.exists(_.getEntries.exists(_.isSymbolic(1)))) {
+        Some(plots.flatMap(_.getEntries.map(_.getColumnValue(1))))
+      } else {
+        None
+      }
     s"""${if (width.nonEmpty) s"width=${width.get}cm," else ""}
         ${if (height.nonEmpty) s"height=${height.get}cm," else ""}
-        ${yAxisAlignment.processOrElse(value => s"axis y line$noYArrowTip=$value,", "")}
-        ${xAxisAlignment.processOrElse(value => s"axis x line$noXArrowTip=$value,", "")}
+        ${symbolicXCoords.processOrElse(
+      sym => s"symbolic x coords={${sym.mkString(",")}},",
+      "")}
+        ${symbolicYCoords.processOrElse(
+      sym => s"symbolic y coords={${sym.mkString(",")}},",
+      "")}
+        ${yAxisAlignment.processOrElse(
+      value => s"axis y line$noYArrowTip=$value,",
+      "")}
+        ${xAxisAlignment.processOrElse(
+      value => s"axis x line$noXArrowTip=$value,",
+      "")}
         ${ytickspt.processOrElse(value => s"y=${value}pt,", "")}
         ${xtickspt.processOrElse(value => s"x=${value}pt,", "")}
         ${enlargeLimits.processOrElse(
