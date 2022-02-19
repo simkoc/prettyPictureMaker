@@ -17,7 +17,7 @@ class StackedAreaPlotTest extends AnyWordSpec with Matchers {
       val coordinates = List(Coordinate(0,1),Coordinate(1,2),Coordinate(2,1))
       new Graph()
         .addAxis(new StackedAreaAxis()
-          .addPlot(new StackedAreaPlot().addCoordinates(coordinates).setColor(Green)))
+          .addPlot(new StackedAreaPlot().addData(coordinates).setColor(Green)))
         .compile(outFile,timeout = 3000) shouldBe true
     }
 
@@ -25,8 +25,8 @@ class StackedAreaPlotTest extends AnyWordSpec with Matchers {
       val outFile = s"$testOutputDirectory/simpleTwo.tex"
       val coordinates = List(Coordinate(0,1),Coordinate(1,2),Coordinate(2,1))
       val plots = List(
-        new StackedAreaPlot().addCoordinates(coordinates).setColor(Green),
-        new StackedAreaPlot().addCoordinates(coordinates).setColor(Red)
+        new StackedAreaPlot().addData(coordinates).setColor(Green),
+        new StackedAreaPlot().addData(coordinates).setColor(Red)
       )
       new Graph()
         .addAxis(new StackedAreaAxis().addPlots(plots))
@@ -37,8 +37,8 @@ class StackedAreaPlotTest extends AnyWordSpec with Matchers {
       val outFile = s"$testOutputDirectory/simpleTwoWithLegend.tex"
       val coordinates = List(Coordinate(0,1),Coordinate(1,2),Coordinate(2,1))
       val plots = List(
-        new StackedAreaPlot().addCoordinates(coordinates).setColor(Green).setName("Green"),
-        new StackedAreaPlot().addCoordinates(coordinates).setColor(Red).setName("Red")
+        new StackedAreaPlot().addData(coordinates).setColor(Green).setName("Green"),
+        new StackedAreaPlot().addData(coordinates).setColor(Red).setName("Red")
       )
       new Graph()
         .addAxis(new StackedAreaAxis().addPlots(plots).addLegend(new DefaultLegend()).setWidth(10))
@@ -49,8 +49,8 @@ class StackedAreaPlotTest extends AnyWordSpec with Matchers {
       val outFile = s"$testOutputDirectory/simpleTwoWithLegendXYMin.tex"
       val coordinates = List(Coordinate(0,1),Coordinate(1,2),Coordinate(2,1))
       val plots = List(
-        new StackedAreaPlot().addCoordinates(coordinates).setColor(Green).setName("Green"),
-        new StackedAreaPlot().addCoordinates(coordinates).setColor(Red).setName("Red")
+        new StackedAreaPlot().addData(coordinates).setColor(Green).setName("Green"),
+        new StackedAreaPlot().addData(coordinates).setColor(Red).setName("Red")
       )
       new Graph()
         .addAxis(new StackedAreaAxis()

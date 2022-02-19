@@ -14,7 +14,7 @@ class DotPlotGraphGenerationTest extends AnyWordSpec with Matchers {
       val coordinates = List(Coordinate(0,1),Coordinate(1,2),Coordinate(2,1))
       new Graph()
         .addAxis(new DotPlotAxis()
-          .addPlot(new DotPlot().addCoordinates(coordinates)))
+          .addPlot(new DotPlot().addData(coordinates)))
         .compile(outFile,timeout = 3000) shouldBe true
     }
   }

@@ -19,9 +19,9 @@ class CombinedCartesianPlotsTests extends AnyWordSpec with Matchers {
       val coordinatesB = List(Coordinate(0,0.5),Coordinate(1,1.5),Coordinate(1.5,1.2),Coordinate(2,0.5))
       new Graph().
         addAxis(new StackedAreaAxis()
-          .addPlot(new StackedAreaPlot().addCoordinates(coordinatesA).setColor(Green)))
+          .addPlot(new StackedAreaPlot().addData(coordinatesA).setColor(Green)))
         .addAxis(new DotPlotAxis()
-          .addPlot(new DotPlot().setConnected(true).addCoordinates(coordinatesB)))
+          .addPlot(new DotPlot().setConnected(true).addData(coordinatesB)))
         .compile(outFile,timeout = 3000) shouldBe true
     }
 
