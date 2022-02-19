@@ -1,30 +1,33 @@
 package de.halcony.ppm.graph.visual.bar
 
-import de.halcony.ppm.graph.generics.FontSizes.FontSize
-import de.halcony.ppm.graph.generics.NodesAlignment
+import de.halcony.ppm.graph.DataTableElement
+import de.halcony.ppm.style.Style
 import de.halcony.ppm.utility.OptionExtensions.ExtendedOption
 
 class NodesNearCoords() {
 
-  private var alignment: Option[NodesAlignment.Alignment] = None
-  private var fontSize: Option[FontSize] = None
+  private var style: Option[Style] = None
+  private var dataColumn: Int = 0
 
-  def setAlignment(alignment: NodesAlignment.Alignment): NodesNearCoords = {
-    this.alignment = Some(alignment)
+  def setDataColumn(nth: Int): NodesNearCoords = {
+    dataColumn = nth
     this
   }
 
-  def setFontSize(size: FontSize): NodesNearCoords = {
-    fontSize = Some(size)
+  def setStyle(style: Style): NodesNearCoords = {
+    this.style = Some(style)
     this
+  }
+
+  def getDataTableSpecs(examplecTableElement: DataTableElement): String = {
+    s"meta=${examplecTableElement.getColumnName(dataColumn)},"
   }
 
   def getSpecs: String = {
-    s"""nodes near coords,
-       |${alignment.processOrElse(value => s"nodes near coords align={$value},",
-                                  "")}
-       |${fontSize.processOrElse(
-         value => s"nodes near coords style={font=$value},",
+    s"""point meta=explicit symbolic,
+       |nodes near coords,
+       |${style.processOrElse(
+         value => s"nodes near coords style=${value.getStyle},",
          "")}
        |""".stripMargin
   }
