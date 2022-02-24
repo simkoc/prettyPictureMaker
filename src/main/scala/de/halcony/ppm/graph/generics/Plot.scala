@@ -55,6 +55,7 @@ trait Plot extends Plottable {
   protected def getCustomPlotConfigLines: String
 
   override def plot: String = {
+    assert(entries.nonEmpty,s"there have to be plot entries for $name else we cannot plot anything")
     s"""\\addplot[
          |  color = $color,
          |  $getCustomPlotConfigLines
