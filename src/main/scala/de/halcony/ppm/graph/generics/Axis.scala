@@ -188,7 +188,7 @@ trait Axis extends Plottable with LogSupport {
         ${ytickspt.processOrElse(value => s"y=${value}pt,", "")}
         ${xtickspt.processOrElse(value => s"x=${value}pt,", "")}
         ${enlargeLimits.processOrElse(
-      value => s"enlarge${value._1}limits={lower, ${value._2},",
+      value => s"enlarge${value._1}limits={lower, ${value._2}},",
       "")}
         ${if (xmin.nonEmpty) s"xmin=${xmin.get}," else ""}
         ${if (xmax.nonEmpty) s"xmax=${xmax.get}," else ""}
