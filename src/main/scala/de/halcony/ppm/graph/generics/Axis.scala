@@ -1,6 +1,7 @@
 package de.halcony.ppm.graph.generics
 import de.halcony.ppm.colors.CustomColor
 import de.halcony.ppm.graph.legends.Legend
+import de.halcony.ppm.style.AxisDenominator.{AxisDenominator, BOTH}
 import de.halcony.ppm.utility.OptionExtensions.ExtendedOption
 import wvlet.log.LogSupport
 
@@ -22,7 +23,7 @@ trait Axis extends Plottable with LogSupport {
   private var ytickspt: Option[Int] = None
   private var yticklabels: Boolean = true
   private var xticklabels: Boolean = true
-  private var enlargeLimits: Option[Double] = None
+  private var enlargeLimits: Option[(AxisDenominator,Double)] = None
   private var drawXTicks: Boolean = true
   private var drawYTicks: Boolean = true
   private var noXArrowTip: String = ""
@@ -48,8 +49,8 @@ trait Axis extends Plottable with LogSupport {
     this
   }
 
-  def enlargeLimits(factor: Double): Axis = {
-    enlargeLimits = Some(factor)
+  def enlargeLimits(factor: Double, which : AxisDenominator = BOTH): Axis = {
+    enlargeLimits = Some((which,factor))
     this
   }
 
@@ -187,7 +188,7 @@ trait Axis extends Plottable with LogSupport {
         ${ytickspt.processOrElse(value => s"y=${value}pt,", "")}
         ${xtickspt.processOrElse(value => s"x=${value}pt,", "")}
         ${enlargeLimits.processOrElse(
-      value => s"enlargelimits={lower, $value},",
+      value => s"enlarge${value._1}limits={lower, ${value._2},",
       "")}
         ${if (xmin.nonEmpty) s"xmin=${xmin.get}," else ""}
         ${if (xmax.nonEmpty) s"xmax=${xmax.get}," else ""}
