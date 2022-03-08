@@ -185,6 +185,7 @@ trait Axis extends Plottable with LogSupport {
         ${xAxisAlignment.processOrElse(
       value => s"axis x line$noXArrowTip=$value,",
       "")}
+        ${if (legend.nonEmpty) "reverse legend," else ""}
         ${ytickspt.processOrElse(value => s"y=${value}pt,", "")}
         ${xtickspt.processOrElse(value => s"x=${value}pt,", "")}
         ${enlargeLimits.processOrElse(
