@@ -23,7 +23,7 @@ trait Axis extends Plottable with LogSupport {
   private var ytickspt: Option[Int] = None
   private var yticklabels: Boolean = true
   private var xticklabels: Boolean = true
-  private var enlargeLimits: Option[(AxisDenominator,Double)] = None
+  private var enlargeLimits: Option[(AxisDenominator, Double)] = None
   private var drawXTicks: Boolean = true
   private var drawYTicks: Boolean = true
   private var noXArrowTip: String = ""
@@ -49,8 +49,8 @@ trait Axis extends Plottable with LogSupport {
     this
   }
 
-  def enlargeLimits(factor: Double, which : AxisDenominator = BOTH): Axis = {
-    enlargeLimits = Some((which,factor))
+  def enlargeLimits(factor: Double, which: AxisDenominator = BOTH): Axis = {
+    enlargeLimits = Some((which, factor))
     this
   }
 
