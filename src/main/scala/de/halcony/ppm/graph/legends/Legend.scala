@@ -7,7 +7,6 @@ trait Legend {
   def plot(plots: Seq[Plot]): String =
     s"""\\legend{${plots
       .map(_.getName.getOrElse("NoName"))
-      .reverse
       .mkString(",")}}"""
 
   def getLayoutConfigLines: String
