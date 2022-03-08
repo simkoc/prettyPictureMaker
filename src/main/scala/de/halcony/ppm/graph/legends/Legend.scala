@@ -5,7 +5,10 @@ import de.halcony.ppm.graph.generics.Plot
 trait Legend {
 
   def plot(plots: Seq[Plot]): String =
-    s"""\\legend{${plots.map(_.getName.getOrElse("NoName")).reverse.mkString(",")}}"""
+    s"""\\legend{${plots
+      .map(_.getName.getOrElse("NoName"))
+      .reverse
+      .mkString(",")}}"""
 
   def getLayoutConfigLines: String
 }

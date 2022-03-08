@@ -145,10 +145,10 @@ trait Axis extends Plottable with LogSupport {
 
   protected def customAxisConfigurationLines: String
 
-  private def removeDuplicates(in : ListBuffer[String]) : ListBuffer[String] = {
+  private def removeDuplicates(in: ListBuffer[String]): ListBuffer[String] = {
     val ret = ListBuffer[String]()
-    in.foreach {
-      elem => if(!ret.contains(elem)) ret.addOne(elem)
+    in.foreach { elem =>
+      if (!ret.contains(elem)) ret.addOne(elem)
     }
     ret
   }
@@ -156,13 +156,17 @@ trait Axis extends Plottable with LogSupport {
   private def getBoilerplateCode: String = {
     val symbolicXCoords: Option[ListBuffer[String]] =
       if (plots.exists(_.getEntries.exists(_.isSymbolic(0)))) {
-        Some(removeDuplicates(plots.flatMap(_.getEntries.map(_.getColumnValue(0)))))
+        Some(
+          removeDuplicates(
+            plots.flatMap(_.getEntries.map(_.getColumnValue(0)))))
       } else {
         None
       }
     val symbolicYCoords: Option[ListBuffer[String]] =
       if (plots.exists(_.getEntries.exists(_.isSymbolic(1)))) {
-        Some(removeDuplicates(plots.flatMap(_.getEntries.map(_.getColumnValue(1)))))
+        Some(
+          removeDuplicates(
+            plots.flatMap(_.getEntries.map(_.getColumnValue(1)))))
       } else {
         None
       }
